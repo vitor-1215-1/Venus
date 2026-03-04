@@ -144,23 +144,23 @@
             <div class="progress-fill"></div>
         </div>
         <p class="skip">
-            Ou clique aqui: <a href="loja.html">Ir para loja agora</a>
+            Ou clique aqui: <a href="index.html">Ir para loja agora</a>
         </p>
     </div>
     
     <!-- Link discreto para admin -->
-    <a href="admin.html" class="admin-link">
+    <a href="index.html" class="admin-link">
         🔐 Admin
     </a>
     
     <script>
         // Carregar nome da loja
-        var config = JSON.parse(localStorage.getItem('config') || '{"name":"Loja Premium"}');
+        var config = JSON.parse(localStorage.getItem('config') || '{"name":"Loja ferrera"}');
         document.getElementById('storeName').textContent = config.name;
         
         // Redirecionar após 2 segundos
         setTimeout(function() {
-            window.location.href = 'loja.html';
+            window.location.href = 'index.html';
         }, 2000);
     </script>
 </body>
