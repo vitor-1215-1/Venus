@@ -3,58 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Admin - Loja Premium</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Painel Admin</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1e40af;
+            --primary: #6366f1;
             --success: #10b981;
-            --danger: #ef4444;
             --warning: #f59e0b;
-            --gray-900: #111827;
-            --gray-800: #1f2937;
-            --gray-700: #374151;
-            --gray-600: #4b5563;
-            --gray-500: #6b7280;
-            --gray-400: #9ca3af;
-            --gray-300: #d1d5db;
-            --gray-200: #e5e7eb;
-            --gray-100: #f3f4f6;
-            --white: #ffffff;
+            --danger: #ef4444;
         }
         
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--gray-100);
-            color: var(--gray-900);
-        }
-        
-        /* Login */
-        .login-page {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            padding: 2rem;
         }
         
-        .login-box {
+        .login-container {
             background: white;
             padding: 3rem;
             border-radius: 20px;
-            width: 100%;
-            max-width: 440px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
         }
         
         .login-logo {
-            width: 64px;
-            height: 64px;
-            background: var(--primary);
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), #a855f7);
             border-radius: 16px;
             display: flex;
             align-items: center;
@@ -63,162 +44,109 @@
             margin: 0 auto 1.5rem;
         }
         
-        .login-title {
+        h1 {
             text-align: center;
-            font-size: 1.875rem;
-            font-weight: 800;
+            font-size: 1.75rem;
             margin-bottom: 0.5rem;
         }
         
-        .login-subtitle {
+        .subtitle {
             text-align: center;
-            color: var(--gray-600);
+            color: #64748b;
             margin-bottom: 2rem;
         }
         
-        .tabs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-            background: var(--gray-100);
-            padding: 0.375rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
+        .form-group {
+            margin-bottom: 1.25rem;
         }
-        
-        .tab {
-            padding: 0.75rem;
-            border: none;
-            background: transparent;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .tab.active {
-            background: white;
-            color: var(--primary);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        
-        .form-group { margin-bottom: 1.25rem; }
         
         .form-label {
             display: block;
             font-weight: 600;
-            font-size: 0.875rem;
-            color: var(--gray-700);
             margin-bottom: 0.5rem;
+            font-size: 0.875rem;
         }
         
-        .form-input, .form-select, .form-textarea {
+        .form-input {
             width: 100%;
-            padding: 0.875rem 1rem;
-            border: 2px solid var(--gray-300);
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
             border-radius: 10px;
-            font-size: 0.95rem;
-            font-family: inherit;
+            font-size: 1rem;
             transition: all 0.3s;
         }
         
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
+        .form-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
         }
         
-        .form-textarea { resize: vertical; min-height: 100px; }
-        
-        .btn {
+        .btn-login {
             width: 100%;
             padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), #a855f7);
+            color: white;
             border: none;
             border-radius: 10px;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
         
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: var(--primary-dark);
+        .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
         }
         
         .alert {
             padding: 1rem;
             border-radius: 10px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             display: none;
         }
         
-        .alert.show { display: block; }
-        .alert-success { background: #d1fae5; color: var(--success); }
-        .alert-error { background: #fee2e2; color: var(--danger); }
-        
-        /* Dashboard */
-        .dashboard { display: none; }
-        .dashboard.active { display: block; }
-        
-        .topbar {
-            background: white;
-            border-bottom: 1px solid var(--gray-200);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .topbar-brand {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .brand-logo-img {
-            width: 48px;
-            height: 48px;
-            border-radius: 10px;
-            object-fit: cover;
-            display: none;
-        }
-        
-        .brand-logo-img.show {
+        .alert.show {
             display: block;
         }
         
-        .brand-logo {
-            width: 48px;
-            height: 48px;
-            background: var(--primary);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
+        .alert-error {
+            background: #fee2e2;
+            color: var(--danger);
         }
         
-        .brand-name {
+        .alert-success {
+            background: #d1fae5;
+            color: var(--success);
+        }
+        
+        .dashboard {
+            display: none;
+            min-height: 100vh;
+            background: #f8fafc;
+        }
+        
+        .dashboard.active {
+            display: block;
+        }
+        
+        .topbar {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .brand {
             font-size: 1.25rem;
             font-weight: 800;
+            color: var(--primary);
         }
         
-        .topbar-actions {
+        .user-menu {
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -226,97 +154,7 @@
         
         .btn-logout {
             padding: 0.625rem 1.25rem;
-            background: var(--gray-100);
-            color: var(--gray-700);
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        
-        .layout { display: flex; }
-        
-        .sidebar {
-            width: 260px;
-            background: white;
-            border-right: 1px solid var(--gray-200);
-            height: calc(100vh - 73px);
-            position: sticky;
-            top: 73px;
-            padding: 1.5rem 0;
-        }
-        
-        .sidebar-menu { list-style: none; }
-        
-        .sidebar-link {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.875rem 1.5rem;
-            color: var(--gray-700);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            border-left: 3px solid transparent;
-        }
-        
-        .sidebar-link:hover {
-            background: var(--gray-50);
-            color: var(--primary);
-        }
-        
-        .sidebar-link.active {
-            background: linear-gradient(90deg, rgba(37, 99, 235, 0.1) 0%, transparent 100%);
-            color: var(--primary);
-            border-left-color: var(--primary);
-            font-weight: 600;
-        }
-        
-        .main-content {
-            flex: 1;
-            padding: 2rem;
-            max-width: 1400px;
-        }
-        
-        .page { display: none; }
-        .page.active { display: block; }
-        
-        .page-header { margin-bottom: 2rem; }
-        
-        .page-title {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-        
-        .page-subtitle {
-            color: var(--gray-600);
-        }
-        
-        .card {
-            background: white;
-            border-radius: 16px;
-            border: 1px solid var(--gray-200);
-            overflow: hidden;
-            margin-bottom: 2rem;
-        }
-        
-        .card-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--gray-200);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .card-title {
-            font-size: 1.125rem;
-            font-weight: 700;
-        }
-        
-        .btn-add {
-            padding: 0.625rem 1.25rem;
-            background: var(--primary);
+            background: var(--danger);
             color: white;
             border: none;
             border-radius: 8px;
@@ -324,11 +162,57 @@
             cursor: pointer;
         }
         
-        .btn-add:hover {
-            background: var(--primary-dark);
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
         }
         
-        .card-body { padding: 1.5rem; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+        
+        .card-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e2e8f0;
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+        
+        .card-body {
+            padding: 2rem;
+        }
         
         table {
             width: 100%;
@@ -337,23 +221,20 @@
         
         th {
             text-align: left;
-            padding: 1rem 1.5rem;
-            background: var(--gray-50);
+            padding: 1rem;
+            background: #f8fafc;
             font-weight: 700;
-            font-size: 0.8rem;
-            color: var(--gray-700);
+            font-size: 0.875rem;
             text-transform: uppercase;
+            color: #64748b;
         }
         
         td {
-            padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid var(--gray-200);
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
         }
         
-        tr:hover { background: var(--gray-50); }
-        
         .badge {
-            display: inline-block;
             padding: 0.375rem 0.75rem;
             border-radius: 6px;
             font-size: 0.75rem;
@@ -361,869 +242,553 @@
             text-transform: uppercase;
         }
         
-        .badge-success { background: #d1fae5; color: var(--success); }
-        .badge-danger { background: #fee2e2; color: var(--danger); }
+        .badge-success {
+            background: #d1fae5;
+            color: var(--success);
+        }
         
-        .btn-sm {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 6px;
-            font-size: 0.875rem;
-            font-weight: 600;
+        .badge-warning {
+            background: #fef3c7;
+            color: var(--warning);
+        }
+        
+        .chat-list {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .chat-item {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
             cursor: pointer;
-            margin-right: 0.5rem;
-        }
-        
-        .btn-edit { background: #3b82f6; color: white; }
-        .btn-delete { background: var(--danger); color: white; }
-        
-        /* Categories Manager */
-        .categories-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .category-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: var(--primary);
-            color: white;
-            border-radius: 8px;
-            font-size: 0.875rem;
-            font-weight: 600;
-        }
-        
-        .category-remove {
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 1.25rem;
-            line-height: 1;
-        }
-        
-        .add-category {
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        .add-category input {
-            flex: 1;
-        }
-        
-        /* Image Upload */
-        .image-upload {
-            width: 150px;
-            height: 150px;
-            border: 2px dashed var(--gray-300);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
             transition: all 0.3s;
         }
         
-        .image-upload:hover {
-            border-color: var(--primary);
+        .chat-item:hover {
+            background: #f8fafc;
         }
         
-        .image-upload img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .chat-item.unread {
+            background: #eff6ff;
         }
         
-        .image-upload input {
-            display: none;
+        .chat-name {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
         }
         
-        /* Banner Config */
-        .banner-preview {
-            width: 100%;
-            height: 200px;
-            background: var(--primary);
+        .chat-preview {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+        
+        .chat-window {
+            border: 1px solid #e2e8f0;
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-            font-weight: 800;
+            overflow: hidden;
+        }
+        
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            padding: 1rem;
+            background: #f8fafc;
+        }
+        
+        .chat-message {
             margin-bottom: 1rem;
         }
         
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+        .chat-bubble {
+            display: inline-block;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            max-width: 70%;
         }
         
-        /* Modal */
+        .chat-message.user .chat-bubble {
+            background: #e2e8f0;
+        }
+        
+        .chat-message.admin .chat-bubble {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .chat-message.admin {
+            text-align: right;
+        }
+        
+        .chat-input-area {
+            padding: 1rem;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 0.75rem;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+        
+        .btn-send {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            z-index: 1001;
+            display: none;
+        }
+        
+        .modal.active {
+            display: block;
+        }
+        
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(4px);
-            display: none;
-            align-items: center;
-            justify-content: center;
+            background: rgba(0,0,0,0.6);
             z-index: 1000;
-            padding: 2rem;
+            display: none;
         }
         
-        .modal-overlay.active { display: flex; }
-        
-        .modal {
-            background: white;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 700px;
-            max-height: 90vh;
-            overflow-y: auto;
+        .modal-overlay.active {
+            display: block;
         }
         
-        .modal-header {
-            padding: 2rem;
-            border-bottom: 1px solid var(--gray-200);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-        }
-        
-        .btn-close {
-            background: none;
-            border: none;
-            font-size: 2rem;
-            color: var(--gray-400);
-            cursor: pointer;
-        }
-        
-        .modal-body { padding: 2rem; }
-        
-        .modal-footer {
-            padding: 1.5rem 2rem;
-            border-top: 1px solid var(--gray-200);
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
-        }
-        
-        .btn-cancel {
+        .btn {
             padding: 0.75rem 1.5rem;
-            background: var(--gray-100);
-            color: var(--gray-700);
             border: none;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
+            margin-right: 0.5rem;
         }
         
-        .btn-save {
-            padding: 0.75rem 1.5rem;
+        .btn-primary {
             background: var(--primary);
             color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
         }
         
-        @media (max-width: 768px) {
-            .sidebar { display: none; }
-            .form-row { grid-template-columns: 1fr; }
+        .btn-secondary {
+            background: #e2e8f0;
         }
     </style>
 </head>
 <body>
 
-<!-- Login Page -->
-<div class="login-page" id="loginPage">
-    <div class="login-box">
-        <div class="login-logo">🛍️</div>
-        <h1 class="login-title">Painel Admin</h1>
-        <p class="login-subtitle">Sistema de Gerenciamento</p>
-        
-        <div class="alert alert-success" id="alertSuccess"></div>
-        <div class="alert alert-error" id="alertError"></div>
-        
-        <div class="tabs">
-            <button class="tab active" onclick="switchTab('login')">Entrar</button>
-            <button class="tab" onclick="switchTab('register')">Criar Conta</button>
+<!-- Login -->
+<div class="login-container" id="loginScreen">
+    <div class="login-logo">🔐</div>
+    <h1>Admin Ultimate</h1>
+    <p class="subtitle">Sistema de Gestão Empresarial</p>
+    
+    <div class="alert alert-error" id="alertError"></div>
+    <div class="alert alert-success" id="alertSuccess"></div>
+    
+    <form onsubmit="return doLogin(event)">
+        <div class="form-group">
+            <label class="form-label">Username</label>
+            <input type="text" class="form-input" id="loginUser" required>
         </div>
-        
-        <div class="tab-content active" id="loginContent">
-            <form onsubmit="return doLogin(event)">
-                <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-input" id="loginEmail" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Senha</label>
-                    <input type="password" class="form-input" id="loginPass" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Entrar</button>
-            </form>
+        <div class="form-group">
+            <label class="form-label">Senha</label>
+            <input type="password" class="form-input" id="loginPass" required>
         </div>
-        
-        <div class="tab-content" id="registerContent">
-            <form onsubmit="return doRegister(event)">
-                <div class="form-group">
-                    <label class="form-label">Nome</label>
-                    <input type="text" class="form-input" id="regName" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-input" id="regEmail" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Senha</label>
-                    <input type="password" class="form-input" id="regPass" minlength="6" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Confirmar Senha</label>
-                    <input type="password" class="form-input" id="regConfirm" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Criar Conta</button>
-            </form>
-        </div>
-    </div>
+        <button type="submit" class="btn-login">Entrar</button>
+    </form>
 </div>
 
 <!-- Dashboard -->
 <div class="dashboard" id="dashboard">
     <div class="topbar">
-        <div class="topbar-brand">
-            <img id="topbarLogoImg" class="brand-logo-img" alt="Logo">
-            <div id="topbarLogo" class="brand-logo">🛍️</div>
-            <div class="brand-name" id="brandName">Loja Premium</div>
-        </div>
-        <div class="topbar-actions">
+        <div class="brand">ADMIN ULTIMATE</div>
+        <div class="user-menu">
+            <span id="currentUser">ferrera</span>
             <button class="btn-logout" onclick="doLogout()">Sair</button>
         </div>
     </div>
     
-    <div class="layout">
-        <aside class="sidebar">
-            <ul class="sidebar-menu">
-                <li><a href="#" class="sidebar-link active" onclick="showPage(event, 'dashboardPage')">📊 Dashboard</a></li>
-                <li><a href="#" class="sidebar-link" onclick="showPage(event, 'productsPage')">🛍️ Produtos</a></li>
-                <li><a href="#" class="sidebar-link" onclick="showPage(event, 'categoriesPage')">📁 Categorias</a></li>
-                <li><a href="#" class="sidebar-link" onclick="showPage(event, 'designPage')">🎨 Design</a></li>
-                <li><a href="#" class="sidebar-link" onclick="showPage(event, 'settingsPage')">⚙️ Configurações</a></li>
-            </ul>
-        </aside>
+    <div class="container">
+        <h2 style="margin-bottom:1.5rem;">Dashboard</h2>
         
-        <main class="main-content">
-            <!-- Dashboard -->
-            <div class="page active" id="dashboardPage">
-                <div class="page-header">
-                    <h1 class="page-title">Dashboard</h1>
-                    <p class="page-subtitle">Visão geral do seu negócio</p>
-                </div>
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Pedidos</div>
+                <div class="stat-value" id="statOrders">0</div>
             </div>
-            
-            <!-- Products -->
-            <div class="page" id="productsPage">
-                <div class="page-header">
-                    <h1 class="page-title">Produtos</h1>
-                    <p class="page-subtitle">Gerencie seus produtos</p>
-                </div>
-                
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Todos os Produtos</h3>
-                        <button class="btn-add" onclick="openProductModal()">+ Adicionar</button>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Produto</th>
-                                <th>Categoria</th>
-                                <th>Preço</th>
-                                <th>Status</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody id="productsTable"></tbody>
-                    </table>
-                </div>
+            <div class="stat-card">
+                <div class="stat-label">Produtos</div>
+                <div class="stat-value" id="statProducts">0</div>
             </div>
-            
-            <!-- Categories -->
-            <div class="page" id="categoriesPage">
-                <div class="page-header">
-                    <h1 class="page-title">Categorias</h1>
-                    <p class="page-subtitle">Gerencie as categorias da loja</p>
-                </div>
-                
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Minhas Categorias</h3>
+            <div class="stat-card">
+                <div class="stat-label">Conversas</div>
+                <div class="stat-value" id="statChats">0</div>
+            </div>
+        </div>
+        
+        <!-- Orders -->
+        <div class="card">
+            <div class="card-header">📦 Pedidos Recentes</div>
+            <div class="card-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Cliente</th>
+                            <th>Total</th>
+                            <th>Pagamento</th>
+                            <th>Entrega</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersTable"></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Chat -->
+        <div class="card">
+            <div class="card-header">💬 Atendimento ao Cliente</div>
+            <div class="card-body">
+                <div style="display:grid;grid-template-columns:300px 1fr;gap:2rem;">
+                    <div>
+                        <h4 style="margin-bottom:1rem;">Conversas</h4>
+                        <div class="chat-list" id="chatList"></div>
                     </div>
-                    <div class="card-body">
-                        <div class="categories-list" id="categoriesList"></div>
-                        
-                        <div class="add-category">
-                            <input type="text" class="form-input" id="newCategory" placeholder="Nova categoria (ex: Masculino, Feminino...)">
-                            <button class="btn-add" onclick="addCategory()">Adicionar</button>
+                    <div>
+                        <h4 style="margin-bottom:1rem;">Chat</h4>
+                        <div class="chat-window">
+                            <div class="chat-messages" id="adminChatMessages">
+                                <p style="text-align:center;color:#64748b;">Selecione uma conversa</p>
+                            </div>
+                            <div class="chat-input-area">
+                                <input type="text" class="chat-input" id="adminChatInput" placeholder="Digite sua resposta...">
+                                <button class="btn-send" onclick="sendAdminMessage()">Enviar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Design -->
-            <div class="page" id="designPage">
-                <div class="page-header">
-                    <h1 class="page-title">Design da Loja</h1>
-                    <p class="page-subtitle">Personalize a aparência</p>
-                </div>
-                
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Logo da Loja</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label class="form-label">Upload da Logo</label>
-                            <div class="image-upload" onclick="document.getElementById('logoInput').click()">
-                                <input type="file" id="logoInput" accept="image/*" onchange="uploadLogo(event)">
-                                <img id="logoPreview" style="display:none;">
-                                <span id="logoPlaceholder">📷 Clique para adicionar</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Banner da Loja</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="banner-preview" id="bannerPreview">LOJA PREMIUM</div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Texto do Banner</label>
-                            <input type="text" class="form-input" id="bannerText" value="LOJA PREMIUM" onchange="updateBannerPreview()">
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label class="form-label">Cor de Fundo</label>
-                                <input type="color" class="form-input" id="bannerBg" value="#2563eb" onchange="updateBannerPreview()">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Cor do Texto</label>
-                                <input type="color" class="form-input" id="bannerColor" value="#ffffff" onchange="updateBannerPreview()">
-                            </div>
-                        </div>
-                        
-                        <button class="btn-add" onclick="saveBanner()">Salvar Banner</button>
-                    </div>
-                </div>
+        </div>
+        
+        <!-- Settings -->
+        <div class="card">
+            <div class="card-header">⚙️ Configurações</div>
+            <div class="card-body">
+                <button class="btn btn-primary" onclick="openChangePassword()">Alterar Senha</button>
+                <button class="btn btn-primary" onclick="openChangeUsername()">Alterar Username</button>
             </div>
-            
-            <!-- Settings -->
-            <div class="page" id="settingsPage">
-                <div class="page-header">
-                    <h1 class="page-title">Configurações</h1>
-                </div>
-                
-                <div class="alert alert-success" id="settingsAlert"></div>
-                
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Informações da Loja</h3>
-                    </div>
-                    <div class="card-body">
-                        <form onsubmit="return saveSettings(event)">
-                            <div class="form-group">
-                                <label class="form-label">Nome da Loja</label>
-                                <input type="text" class="form-input" id="settingsName" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Descrição</label>
-                                <textarea class="form-textarea" id="settingsDesc"></textarea>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label class="form-label">WhatsApp</label>
-                                    <input type="tel" class="form-input" id="settingsPhone" placeholder="(00) 00000-0000">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Email</label>
-                                    <input type="email" class="form-input" id="settingsEmail">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Chave PIX</label>
-                                <input type="text" class="form-input" id="settingsPix" required>
-                            </div>
-                            <button type="submit" class="btn-save">Salvar</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </main>
+        </div>
     </div>
 </div>
 
-<!-- Product Modal -->
-<div class="modal-overlay" id="productModal">
-    <div class="modal">
-        <div class="modal-header">
-            <h2 class="modal-title" id="productModalTitle">Adicionar Produto</h2>
-            <button class="btn-close" onclick="closeProductModal()">×</button>
+<!-- Change Password Modal -->
+<div class="modal-overlay" id="modalOverlay"></div>
+<div class="modal" id="changePasswordModal">
+    <h3 style="margin-bottom:1.5rem;">Alterar Senha</h3>
+    <form onsubmit="return changePassword(event)">
+        <div class="form-group">
+            <label class="form-label">Senha Atual</label>
+            <input type="password" class="form-input" id="currentPass" required>
         </div>
-        <form onsubmit="return saveProduct(event)">
-            <div class="modal-body">
-                <input type="hidden" id="productId">
-                
-                <div class="form-group">
-                    <label class="form-label">Nome do Produto</label>
-                    <input type="text" class="form-input" id="productName" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Categoria</label>
-                    <select class="form-select" id="productCategory" required>
-                        <option value="">Selecione...</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Preço (R$)</label>
-                    <input type="number" class="form-input" id="productPrice" step="0.01" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Descrição (Opcional)</label>
-                    <textarea class="form-textarea" id="productDesc"></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Tamanhos (separados por vírgula)</label>
-                    <input type="text" class="form-input" id="productSizes" placeholder="P, M, G, GG">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Estoque por Tamanho</label>
-                    <input type="text" class="form-input" id="productStock" placeholder="10, 5, 8, 3">
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">Badge</label>
-                        <input type="text" class="form-input" id="productBadge" placeholder="Novo, Sale...">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Status</label>
-                        <select class="form-select" id="productStatus">
-                            <option value="active">Ativo</option>
-                            <option value="inactive">Inativo</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">URL da Imagem</label>
-                    <input type="url" class="form-input" id="productImage">
-                </div>
-            </div>
-            
-            <div class="modal-footer">
-                <button type="button" class="btn-cancel" onclick="closeProductModal()">Cancelar</button>
-                <button type="submit" class="btn-save">Salvar</button>
-            </div>
-        </form>
-    </div>
+        <div class="form-group">
+            <label class="form-label">Nova Senha</label>
+            <input type="password" class="form-input" id="newPass" minlength="3" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Confirmar Nova Senha</label>
+            <input type="password" class="form-input" id="confirmPass" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+    </form>
+</div>
+
+<!-- Change Username Modal -->
+<div class="modal" id="changeUsernameModal">
+    <h3 style="margin-bottom:1.5rem;">Alterar Username</h3>
+    <form onsubmit="return changeUsername(event)">
+        <div class="form-group">
+            <label class="form-label">Senha Atual</label>
+            <input type="password" class="form-input" id="userPassConfirm" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Novo Username</label>
+            <input type="text" class="form-input" id="newUsername" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+    </form>
 </div>
 
 <script>
-console.log('🚀 Admin carregado');
+console.log('🚀 Admin Ultimate carregado');
 
-var DB = {
-    users: JSON.parse(localStorage.getItem('users') || '[]'),
-    currentUser: JSON.parse(localStorage.getItem('currentUser') || 'null'),
-    products: JSON.parse(localStorage.getItem('products') || '[]'),
-    categories: JSON.parse(localStorage.getItem('categories') || '["Masculino","Feminino","Acessórios"]'),
-    config: JSON.parse(localStorage.getItem('config') || '{"name":"Loja Premium","desc":"","phone":"","email":"","pix":"","logo":"","bannerText":"LOJA PREMIUM","bannerBg":"#2563eb","bannerColor":"#ffffff"}')
-};
+// Sistema de conta única
+var ADMIN_ACCOUNT = JSON.parse(localStorage.getItem('ADMIN_ACCOUNT') || '{"username":"ferrera","password":"123"}');
+var currentSession = JSON.parse(sessionStorage.getItem('adminSession') || 'null');
 
-function switchTab(tab) {
-    var tabs = document.querySelectorAll('.tab');
-    var contents = document.querySelectorAll('.tab-content');
-    
-    tabs.forEach(function(t) { t.classList.remove('active'); });
-    contents.forEach(function(c) { c.classList.remove('active'); });
-    
-    event.target.classList.add('active');
-    document.getElementById(tab + 'Content').classList.add('active');
-}
+// Data
+var orders = JSON.parse(localStorage.getItem('orders') || '[]');
+var products = JSON.parse(localStorage.getItem('products') || '[]');
+var chatMessages = JSON.parse(localStorage.getItem('chatMessages') || '[]');
 
-function showAlert(type, msg) {
-    var id = type === 'success' ? 'alertSuccess' : 'alertError';
-    var alert = document.getElementById(id);
-    alert.textContent = msg;
-    alert.classList.add('show');
-    setTimeout(function() { alert.classList.remove('show'); }, 3000);
-}
-
-function doRegister(e) {
-    e.preventDefault();
-    
-    var name = document.getElementById('regName').value;
-    var email = document.getElementById('regEmail').value;
-    var pass = document.getElementById('regPass').value;
-    var confirm = document.getElementById('regConfirm').value;
-    
-    if (pass !== confirm) {
-        showAlert('error', 'As senhas não coincidem!');
-        return false;
-    }
-    
-    if (DB.users.find(function(u) { return u.email === email; })) {
-        showAlert('error', 'Email já cadastrado!');
-        return false;
-    }
-    
-    DB.users.push({ id: Date.now(), name: name, email: email, password: pass });
-    localStorage.setItem('users', JSON.stringify(DB.users));
-    
-    showAlert('success', '✅ Conta criada! Faça login.');
-    
-    setTimeout(function() {
-        switchTab('login');
-        e.target.reset();
-    }, 2000);
-    
-    return false;
-}
-
+// Login
 function doLogin(e) {
     e.preventDefault();
     
-    var email = document.getElementById('loginEmail').value;
+    var user = document.getElementById('loginUser').value;
     var pass = document.getElementById('loginPass').value;
     
-    var user = DB.users.find(function(u) { return u.email === email && u.password === pass; });
-    
-    if (!user) {
-        showAlert('error', 'Email ou senha incorretos!');
-        return false;
+    if (user === ADMIN_ACCOUNT.username && pass === ADMIN_ACCOUNT.password) {
+        currentSession = { username: user, loginTime: Date.now() };
+        sessionStorage.setItem('adminSession', JSON.stringify(currentSession));
+        showDashboard();
+    } else {
+        showAlert('error', '❌ Credenciais inválidas!');
     }
-    
-    DB.currentUser = user;
-    localStorage.setItem('currentUser', JSON.stringify(user));
-    showDashboard();
     
     return false;
 }
 
 function doLogout() {
-    localStorage.removeItem('currentUser');
-    location.reload();
+    if (confirm('Sair do sistema?')) {
+        sessionStorage.removeItem('adminSession');
+        location.reload();
+    }
 }
 
+function showAlert(type, msg) {
+    var id = type === 'error' ? 'alertError' : 'alertSuccess';
+    var alert = document.getElementById(id);
+    alert.textContent = msg;
+    alert.classList.add('show');
+    setTimeout(function() {
+        alert.classList.remove('show');
+    }, 3000);
+}
+
+// Dashboard
 function showDashboard() {
-    document.getElementById('loginPage').style.display = 'none';
+    document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('dashboard').classList.add('active');
+    document.getElementById('currentUser').textContent = currentSession.username;
     
-    document.getElementById('brandName').textContent = DB.config.name;
+    updateStats();
+    renderOrders();
+    renderChatList();
+}
+
+function updateStats() {
+    document.getElementById('statOrders').textContent = orders.length;
+    document.getElementById('statProducts').textContent = products.length;
     
-    if (DB.config.logo) {
-        document.getElementById('topbarLogoImg').src = DB.config.logo;
-        document.getElementById('topbarLogoImg').classList.add('show');
-        document.getElementById('topbarLogo').style.display = 'none';
+    // Count unique users in chat
+    var users = [];
+    chatMessages.forEach(function(msg) {
+        if (!users.includes(msg.sender) && msg.sender === 'user') {
+            users.push(msg.sender);
+        }
+    });
+    document.getElementById('statChats').textContent = users.length || 0;
+}
+
+function renderOrders() {
+    if (orders.length === 0) {
+        document.getElementById('ordersTable').innerHTML = '<tr><td colspan="6" style="text-align:center;padding:2rem;color:#64748b;">Nenhum pedido</td></tr>';
+        return;
     }
     
-    loadSettings();
-    renderCategories();
-    renderProducts();
-    loadBannerConfig();
-}
-
-function showPage(e, pageId) {
-    e.preventDefault();
-    
-    var links = document.querySelectorAll('.sidebar-link');
-    var pages = document.querySelectorAll('.page');
-    
-    links.forEach(function(l) { l.classList.remove('active'); });
-    pages.forEach(function(p) { p.classList.remove('active'); });
-    
-    e.currentTarget.classList.add('active');
-    document.getElementById(pageId).classList.add('active');
-}
-
-function renderCategories() {
     var html = '';
-    for (var i = 0; i < DB.categories.length; i++) {
-        html += '<div class="category-tag">';
-        html += '<span>' + DB.categories[i] + '</span>';
-        html += '<button class="category-remove" onclick="removeCategory(' + i + ')">×</button>';
-        html += '</div>';
-    }
-    document.getElementById('categoriesList').innerHTML = html;
-    
-    updateCategorySelects();
+    orders.slice(-10).reverse().forEach(function(o) {
+        html += '<tr>';
+        html += '<td>#' + o.id + '</td>';
+        html += '<td>' + o.customerName + '</td>';
+        html += '<td>R$ ' + o.total.toFixed(2) + '</td>';
+        html += '<td>' + getPaymentLabel(o.payment) + '</td>';
+        html += '<td>' + getDeliveryLabel(o.delivery) + '</td>';
+        html += '<td><span class="badge badge-warning">Pendente</span></td>';
+        html += '</tr>';
+    });
+    document.getElementById('ordersTable').innerHTML = html;
 }
 
-function addCategory() {
-    var input = document.getElementById('newCategory');
-    var category = input.value.trim();
-    
-    if (!category) {
-        alert('Digite um nome para a categoria!');
+function getPaymentLabel(p) {
+    var labels = { pix: 'PIX', card: 'Cartão', boleto: 'Boleto', delivery: 'Na Entrega' };
+    return labels[p] || p;
+}
+
+function getDeliveryLabel(d) {
+    var labels = { home: 'Casa', pickup: 'Loja', point: 'Ponto' };
+    return labels[d] || d;
+}
+
+// Chat
+function renderChatList() {
+    if (chatMessages.length === 0) {
+        document.getElementById('chatList').innerHTML = '<p style="text-align:center;padding:2rem;color:#64748b;">Nenhuma conversa</p>';
         return;
     }
     
-    if (DB.categories.includes(category)) {
-        alert('Esta categoria já existe!');
-        return;
-    }
+    var html = '';
+    var seen = [];
     
-    DB.categories.push(category);
-    localStorage.setItem('categories', JSON.stringify(DB.categories));
+    chatMessages.forEach(function(msg) {
+        if (msg.sender === 'user' && !seen.includes(msg.id)) {
+            seen.push(msg.id);
+            html += '<div class="chat-item' + (!msg.read ? ' unread' : '') + '" onclick="openChat(' + msg.id + ')">';
+            html += '<div class="chat-name">Cliente</div>';
+            html += '<div class="chat-preview">' + msg.text.substring(0, 40) + '...</div>';
+            html += '</div>';
+        }
+    });
+    
+    document.getElementById('chatList').innerHTML = html || '<p style="text-align:center;padding:2rem;color:#64748b;">Nenhuma conversa</p>';
+}
+
+var currentChatId = null;
+
+function openChat(id) {
+    currentChatId = id;
+    loadChatMessages();
+}
+
+function loadChatMessages() {
+    var html = '';
+    
+    chatMessages.forEach(function(msg) {
+        html += '<div class="chat-message ' + msg.sender + '">';
+        html += '<div class="chat-bubble">' + msg.text + '</div>';
+        html += '</div>';
+    });
+    
+    document.getElementById('adminChatMessages').innerHTML = html;
+    document.getElementById('adminChatMessages').scrollTop = 999999;
+}
+
+function sendAdminMessage() {
+    var input = document.getElementById('adminChatInput');
+    var text = input.value.trim();
+    
+    if (!text) return;
+    
+    var msg = {
+        id: Date.now(),
+        text: text,
+        sender: 'admin',
+        date: new Date().toISOString(),
+        read: true
+    };
+    
+    chatMessages.push(msg);
+    localStorage.setItem('chatMessages', JSON.stringify(chatMessages));
     
     input.value = '';
-    renderCategories();
+    loadChatMessages();
 }
 
-function removeCategory(index) {
-    if (!confirm('Remover esta categoria?')) return;
-    
-    DB.categories.splice(index, 1);
-    localStorage.setItem('categories', JSON.stringify(DB.categories));
-    renderCategories();
+// Settings
+function openChangePassword() {
+    document.getElementById('modalOverlay').classList.add('active');
+    document.getElementById('changePasswordModal').classList.add('active');
 }
 
-function updateCategorySelects() {
-    var select = document.getElementById('productCategory');
-    var html = '<option value="">Selecione...</option>';
-    
-    for (var i = 0; i < DB.categories.length; i++) {
-        html += '<option value="' + DB.categories[i] + '">' + DB.categories[i] + '</option>';
-    }
-    
-    select.innerHTML = html;
+function openChangeUsername() {
+    document.getElementById('modalOverlay').classList.add('active');
+    document.getElementById('changeUsernameModal').classList.add('active');
 }
 
-function renderProducts() {
-    var tbody = document.getElementById('productsTable');
-    
-    if (DB.products.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--gray-500);padding:3rem;">Nenhum produto</td></tr>';
-        return;
-    }
-    
-    var html = '';
-    
-    for (var i = 0; i < DB.products.length; i++) {
-        var p = DB.products[i];
-        html += '<tr>';
-        html += '<td><strong>' + p.name + '</strong></td>';
-        html += '<td>' + p.category + '</td>';
-        html += '<td><strong>R$ ' + parseFloat(p.price).toFixed(2) + '</strong></td>';
-        html += '<td><span class="badge badge-' + (p.status === 'active' ? 'success' : 'danger') + '">' + (p.status === 'active' ? 'Ativo' : 'Inativo') + '</span></td>';
-        html += '<td>';
-        html += '<button class="btn-sm btn-edit" onclick="editProduct(' + p.id + ')">Editar</button>';
-        html += '<button class="btn-sm btn-delete" onclick="deleteProduct(' + p.id + ')">Excluir</button>';
-        html += '</td>';
-        html += '</tr>';
-    }
-    
-    tbody.innerHTML = html;
+function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('active');
+    document.querySelectorAll('.modal').forEach(function(m) {
+        m.classList.remove('active');
+    });
 }
 
-function openProductModal(id) {
-    updateCategorySelects();
-    document.getElementById('productModal').classList.add('active');
-    
-    if (id) {
-        var p = DB.products.find(function(product) { return product.id === id; });
-        document.getElementById('productModalTitle').textContent = 'Editar Produto';
-        document.getElementById('productId').value = p.id;
-        document.getElementById('productName').value = p.name;
-        document.getElementById('productCategory').value = p.category;
-        document.getElementById('productPrice').value = p.price;
-        document.getElementById('productDesc').value = p.desc || '';
-        document.getElementById('productSizes').value = p.sizes ? p.sizes.join(', ') : '';
-        document.getElementById('productStock').value = p.stock ? p.stock.join(', ') : '';
-        document.getElementById('productBadge').value = p.badge || '';
-        document.getElementById('productStatus').value = p.status;
-        document.getElementById('productImage').value = p.image || '';
-    } else {
-        document.getElementById('productModalTitle').textContent = 'Adicionar Produto';
-        document.getElementById('productId').value = '';
-        document.querySelector('#productModal form').reset();
-    }
-}
-
-function closeProductModal() {
-    document.getElementById('productModal').classList.remove('active');
-}
-
-function editProduct(id) {
-    openProductModal(id);
-}
-
-function deleteProduct(id) {
-    if (!confirm('Excluir este produto?')) return;
-    
-    DB.products = DB.products.filter(function(p) { return p.id !== id; });
-    localStorage.setItem('products', JSON.stringify(DB.products));
-    renderProducts();
-}
-
-function saveProduct(e) {
+function changePassword(e) {
     e.preventDefault();
     
-    var id = document.getElementById('productId').value;
-    var sizesText = document.getElementById('productSizes').value;
-    var sizes = sizesText ? sizesText.split(',').map(function(s) { return s.trim(); }) : [];
-    var stockText = document.getElementById('productStock').value;
-    var stock = stockText ? stockText.split(',').map(function(s) { return parseInt(s.trim()) || 0; }) : [];
+    var current = document.getElementById('currentPass').value;
+    var newPass = document.getElementById('newPass').value;
+    var confirm = document.getElementById('confirmPass').value;
     
-    var product = {
-        id: id ? parseInt(id) : Date.now(),
-        name: document.getElementById('productName').value,
-        category: document.getElementById('productCategory').value,
-        price: parseFloat(document.getElementById('productPrice').value),
-        desc: document.getElementById('productDesc').value,
-        sizes: sizes,
-        stock: stock,
-        badge: document.getElementById('productBadge').value,
-        status: document.getElementById('productStatus').value,
-        image: document.getElementById('productImage').value
-    };
-    
-    if (id) {
-        var index = DB.products.findIndex(function(p) { return p.id === parseInt(id); });
-        DB.products[index] = product;
-    } else {
-        DB.products.push(product);
+    if (current !== ADMIN_ACCOUNT.password) {
+        alert('❌ Senha atual incorreta!');
+        return false;
     }
     
-    localStorage.setItem('products', JSON.stringify(DB.products));
-    renderProducts();
-    closeProductModal();
+    if (newPass !== confirm) {
+        alert('❌ Senhas não coincidem!');
+        return false;
+    }
+    
+    ADMIN_ACCOUNT.password = newPass;
+    localStorage.setItem('ADMIN_ACCOUNT', JSON.stringify(ADMIN_ACCOUNT));
+    
+    alert('✅ Senha alterada com sucesso!');
+    closeModal();
+    e.target.reset();
     
     return false;
 }
 
-function uploadLogo(e) {
-    var file = e.target.files[0];
-    if (!file) return;
-    
-    var reader = new FileReader();
-    reader.onload = function(event) {
-        var logo = event.target.result;
-        DB.config.logo = logo;
-        localStorage.setItem('config', JSON.stringify(DB.config));
-        
-        document.getElementById('logoPreview').src = logo;
-        document.getElementById('logoPreview').style.display = 'block';
-        document.getElementById('logoPlaceholder').style.display = 'none';
-        
-        document.getElementById('topbarLogoImg').src = logo;
-        document.getElementById('topbarLogoImg').classList.add('show');
-        document.getElementById('topbarLogo').style.display = 'none';
-    };
-    reader.readAsDataURL(file);
-}
-
-function loadBannerConfig() {
-    document.getElementById('bannerText').value = DB.config.bannerText || 'LOJA PREMIUM';
-    document.getElementById('bannerBg').value = DB.config.bannerBg || '#2563eb';
-    document.getElementById('bannerColor').value = DB.config.bannerColor || '#ffffff';
-    updateBannerPreview();
-    
-    if (DB.config.logo) {
-        document.getElementById('logoPreview').src = DB.config.logo;
-        document.getElementById('logoPreview').style.display = 'block';
-        document.getElementById('logoPlaceholder').style.display = 'none';
-    }
-}
-
-function updateBannerPreview() {
-    var preview = document.getElementById('bannerPreview');
-    preview.textContent = document.getElementById('bannerText').value;
-    preview.style.background = document.getElementById('bannerBg').value;
-    preview.style.color = document.getElementById('bannerColor').value;
-}
-
-function saveBanner() {
-    DB.config.bannerText = document.getElementById('bannerText').value;
-    DB.config.bannerBg = document.getElementById('bannerBg').value;
-    DB.config.bannerColor = document.getElementById('bannerColor').value;
-    localStorage.setItem('config', JSON.stringify(DB.config));
-    alert('✅ Banner salvo com sucesso!');
-}
-
-function loadSettings() {
-    document.getElementById('settingsName').value = DB.config.name;
-    document.getElementById('settingsDesc').value = DB.config.desc || '';
-    document.getElementById('settingsPhone').value = DB.config.phone || '';
-    document.getElementById('settingsEmail').value = DB.config.email || '';
-    document.getElementById('settingsPix').value = DB.config.pix || '';
-}
-
-function saveSettings(e) {
+function changeUsername(e) {
     e.preventDefault();
     
-    DB.config.name = document.getElementById('settingsName').value;
-    DB.config.desc = document.getElementById('settingsDesc').value;
-    DB.config.phone = document.getElementById('settingsPhone').value;
-    DB.config.email = document.getElementById('settingsEmail').value;
-    DB.config.pix = document.getElementById('settingsPix').value;
+    var pass = document.getElementById('userPassConfirm').value;
+    var newUser = document.getElementById('newUsername').value;
     
-    localStorage.setItem('config', JSON.stringify(DB.config));
-    document.getElementById('brandName').textContent = DB.config.name;
+    if (pass !== ADMIN_ACCOUNT.password) {
+        alert('❌ Senha incorreta!');
+        return false;
+    }
     
-    var alert = document.getElementById('settingsAlert');
-    alert.textContent = '✅ Configurações salvas!';
-    alert.classList.add('show');
-    setTimeout(function() { alert.classList.remove('show'); }, 3000);
+    ADMIN_ACCOUNT.username = newUser;
+    localStorage.setItem('ADMIN_ACCOUNT', JSON.stringify(ADMIN_ACCOUNT));
+    
+    currentSession.username = newUser;
+    sessionStorage.setItem('adminSession', JSON.stringify(currentSession));
+    document.getElementById('currentUser').textContent = newUser;
+    
+    alert('✅ Username alterado com sucesso!');
+    closeModal();
+    e.target.reset();
     
     return false;
 }
 
-window.addEventListener('storage', function(e) {
-    if (e.key === 'newOrder') {
-        var order = JSON.parse(e.newValue);
-        alert('🎉 Novo Pedido!\n\n#' + order.id + '\n' + order.customerName + '\nR$ ' + order.total.toFixed(2));
-        localStorage.removeItem('newOrder');
-    }
-});
-
-if (DB.currentUser) {
+// Initialize
+if (currentSession) {
     showDashboard();
 }
 
-if (DB.products.length === 0) {
-    DB.products = [
-        { id: 1, name: 'Camiseta Premium', category: 'Feminino', price: 89.90, desc: 'Camiseta de algodão', sizes: ['P','M','G','GG'], stock: [10,5,2,0], badge: 'Novo', status: 'active', image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400' },
-        { id: 2, name: 'Calça Jeans', category: 'Masculino', price: 149.90, desc: 'Calça jeans slim', sizes: ['38','40','42'], stock: [8,12,6], badge: '', status: 'active', image: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400' }
-    ];
-    localStorage.setItem('products', JSON.stringify(DB.products));
-}
-
 console.log('✅ Sistema pronto!');
+console.log('🔐 Conta padrão:');
+console.log('   Username: ferrera');
+console.log('   Senha: 123');
 </script>
 
 </body>
